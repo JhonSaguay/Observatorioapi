@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Brackets\AdminListing\Facades\AdminListing;
 use App\Models\CategoriaIndicadore;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 // Helpers
 use App\Helpers\CustomUrl; // $string
 use App\Helpers\Archivos; // $nombre, $archivo, $disk
@@ -47,7 +48,7 @@ class CategoriaIndicadoresController extends Controller
             return ['data' => $data];
         }
 
-        return view('admin.categoria-indicadore.index', ['data' => $data]);
+        return view('admin.categorias.index', ['data' => $data]);
     }
 
     /**
@@ -71,6 +72,27 @@ class CategoriaIndicadoresController extends Controller
      */
     public function store(Request $request)
     {
+        $input=$request->all();
+        $rules=[
+            'file_csv' => 'required|mimes:csv,txt',
+            'nombre'=> 'required|unique:categoria_indicadores,nombre',  
+            'codigo' => 'required|unique:categoria_indicadores,codigo'
+
+        ];
+        $validator = Validator::make($input,$rules,$messages = [
+            'file_csv.required' => 'No ha seleccionado ningún archivo.',
+            'file_csv.mimes' => 'Solo se aceptan archivos con formato csv.',
+            'nombre.required' => 'No ha ingresado un nombre.',
+            'nombre.unique' => 'El nombre debe ser unico.',
+            'codigo.required' => 'No ha ingresado un codigo.',
+            'codigo.unique' => 'El codigo debe ser unico.',
+        ]
+        );
+        if($validator->fails())
+        {
+            return redirect()->back()->withInput()
+                ->withErrors($validator->errors());
+        }
         $file=$request->file('file_csv');
         if(isset($file)){
             $_FILES=$file;
@@ -97,19 +119,7 @@ class CategoriaIndicadoresController extends Controller
             ]);
             $categoria->save();
         }
-        
-        dd($request);
-        // Sanitize input
-        $sanitized = $request->validated();
-
-        // Store the CategoriaIndicadore
-        $categoriaIndicadore = CategoriaIndicadore::create($sanitized);
-
-        if ($request->ajax()) {
-            return ['redirect' => url('admin/categoria-indicadores'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
-        }
-
-        return redirect('admin/categoria-indicadores');
+        return redirect('admin/categoria-indicadores')->with('message','Categoria creada con exito');
     }
 
     /**
@@ -138,7 +148,7 @@ class CategoriaIndicadoresController extends Controller
         $this->authorize('admin.categoria-indicadore.edit', $categoriaIndicadore);
 
 
-        return view('admin.categoria-indicadore.edit', [
+        return view('admin.categorias.edit', [
             'categoriaIndicadore' => $categoriaIndicadore,
         ]);
     }
@@ -150,7 +160,49 @@ class CategoriaIndicadoresController extends Controller
      * @param  CategoriaIndicadore $categoriaIndicadore
      * @return Response|array
      */
-    public function update(UpdateCategoriaIndicadore $request, CategoriaIndicadore $categoriaIndicadore)
+
+    public function update(Request $request, CategoriaIndicadore $categoriaIndicadore)
+    {
+
+        $input=$request->all();
+        $rules=[
+            'file_csv' => 'required|mimes:csv,txt'
+        ];
+        $validator = Validator::make($input,$rules,$messages = [
+            'file_csv.required' => 'No ha seleccionado ningún archivo.',
+            'file_csv.mimes' => 'Solo se aceptan archivos con formato csv.'
+        ]
+        );
+        if($validator->fails())
+        {
+            return redirect()->back()->withInput()
+                ->withErrors($validator->errors());
+        }
+        $file=$request->file('file_csv');
+        if(isset($file)){
+            $_FILES=$file;
+            $column_name = array();
+            $column_data=array();
+            $final_data= array();
+            $file_data= file_get_contents($_FILES);
+            $data_array=array_map("str_getcsv",explode("\n",$file_data));
+            $labels=array_shift($data_array);
+            foreach($labels as $label){
+                $column_name[]=$label;
+                $column_data[]=$label;
+            }
+            $final_data=array_combine($column_name,$column_data);
+            $json_output = json_encode($final_data);
+            $request->archivo_json=$json_output;
+            $name = CustomUrl::urlTitle($request->codigo);
+            $fileName=Archivos::storeImagen($name,$file, 'categorias');
+            $categoriaIndicadore->update(['archivo_muestra'=>$fileName,'archivo_json'=>$json_output]);
+        }
+        return redirect('admin/categoria-indicadores')->with('message','Categoria actualizada con exito');
+    }
+
+
+    public function update1(UpdateCategoriaIndicadore $request, CategoriaIndicadore $categoriaIndicadore)
     {
         // Sanitize input
         $sanitized = $request->getSanitized();

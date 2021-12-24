@@ -20,6 +20,7 @@ class CreateIndicadoresTable extends Migration
             $table->boolean('tipo')->comment('0/api-1/csv');
             $table->string('direccion_api')->nullable();
             $table->string('nombre_archivo')->nullable();
+            $table->boolean('active')->nullable();
             $table->json('datos_indicador');
             $table->timestamps();
         });

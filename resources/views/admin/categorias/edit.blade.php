@@ -5,36 +5,39 @@
 @section('body')
 
     <div class="container-xl">
+        @if($errors->all())
+              
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @foreach ($errors->all() as $error)
+                    <div>{{ $error }}</div>
+                @endforeach
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif 
         <div class="card">
 
-            <categoria-indicadore-form
-                :action="'{{ $categoriaIndicadore->resource_url }}'"
-                :data="{{ $categoriaIndicadore->toJson() }}"
-                v-cloak
-                inline-template>
-            
-                <form class="form-horizontal form-edit" method="post" @submit.prevent="onSubmit" :action="this.action" novalidate>
+            <form class="form-horizontal form-create" action="{{ $categoriaIndicadore->resource_url }}" method="post" enctype="multipart/form-data">
+                @csrf
+                @method("post")
+                <div class="card-header">
+                    <i class="fa fa-pencil"></i> Editar {{ $categoriaIndicadore->id}}
+                </div>
 
-
-                    <div class="card-header">
-                        <i class="fa fa-pencil"></i> {{ trans('admin.categoria-indicadore.actions.edit', ['name' => $categoriaIndicadore->id]) }}
-                    </div>
-
-                    <div class="card-body">
-                        @include('admin.categoria-indicadore.components.form-elements')
-                    </div>
-                    
-                    
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary" :disabled="submiting">
-                            <i class="fa" :class="submiting ? 'fa-spinner' : 'fa-download'"></i>
-                            {{ trans('brackets/admin-ui::admin.btn.save') }}
-                        </button>
-                    </div>
-                    
-                </form>
-
-        </categoria-indicadore-form>
+                <div class="card-body">
+                    @include('admin.categorias.components.form-view')
+                </div>
+                
+                
+                <div class="card-footer">
+                    {{-- <button type="submit" class="btn btn-primary" :disabled="submiting">
+                        <i class="fa" :class="submiting ? 'fa-spinner' : 'fa-download'"></i>
+                        {{ trans('brackets/admin-ui::admin.btn.save') }}
+                    </button> --}}
+                </div>
+                
+            </form>
 
         </div>
     

@@ -4,7 +4,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Nombre</span>
         </div>
-        <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+        <input type="text" class="form-control" name="nombre" placeholder="Nombre"  required>
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -38,10 +38,11 @@
     <br>
     
     <div class="input-group mb-3 api">
-            
-        <input type="text" class="form-control" name="api_direction" placeholder="API direccion web">
+        <input type="hidden" class="form-control" id="validation_api" name="validation_api" value="0" required>
+
+        <input type="text" onkeydown="functionrestart()" class="form-control" id="api_direction" name="api_direction" placeholder="API direccion web">
         <div class="input-group-prepend">
-            <button class="input-group-text" type="button">Test</button>
+            <button onclick="functionrequest()" class="input-group-text" type="button">Test</button>
         </div>
         
     </div>
@@ -52,7 +53,7 @@
     </div>
     <div class="input-group mb-3 csv">
         
-        <input type="file" class="form-control" name='file_csv' placeholder="Archivo csv">
+        <input type="file" class="form-control" id="file_csv" name='file_csv' placeholder="Archivo csv">
         
     </div>
 </div>

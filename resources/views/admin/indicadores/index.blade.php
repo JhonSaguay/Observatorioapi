@@ -1,6 +1,6 @@
 @extends('brackets/admin-ui::admin.layout.default')
 
-@section('title', trans('admin.indicadore.actions.index'))
+@section('title', 'Indicadores')
 
 @section('body')
 
@@ -11,10 +11,19 @@
 
         <div class="row">
             <div class="col">
+                @if(session('message'))
+              
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <span>{{ session('message') }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif 
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> {{ trans('admin.indicadore.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/indicadores/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.indicadore.actions.create') }}</a>
+                        <i class="fa fa-align-justify"></i> {{ 'Indicadores' }}
+                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/indicadores/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ 'Crear Indicador' }}</a>
                     </div>
                     <div class="card-body" v-cloak>
                         <form @submit.prevent="">
@@ -113,7 +122,7 @@
 		                    <i class="icon-magnifier"></i>
 		                    <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
 		                    <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                            <a class="btn btn-primary btn-spinner" href="{{ url('admin/indicadores/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.indicadore.actions.create') }}</a>
+                            <a class="btn btn-primary btn-spinner" href="{{ url('admin/indicadores/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ 'Crear Indicador' }}</a>
 	                    </div>
                     </div>
                 </div>

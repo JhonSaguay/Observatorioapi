@@ -4,13 +4,13 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Nombre</span>
         </div>
-        <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+        <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="{{old('nombre')}}" required>
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">Codigo</span>
         </div>
-        <input type="text" class="form-control" name="codigo" placeholder="Codigo" required>
+        <input type="text" class="form-control" name="codigo" placeholder="Codigo" value="{{old('codigo')}}" required>
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text">Archivo</span>

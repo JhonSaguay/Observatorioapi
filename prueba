@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+    ServerAdmin 149.28.99.59
+    ServerName 149.28.99.59
+    DocumentRoot "/var/www/html/Observatorioapi/public"
+    ErrorLog     "/var/www/html/Observatorioapi/error.log"
+    CustomLog    "/var/www/html/Observatorioapi/access.log" combined
+    <Directory "/var/www/html/Observatorioapi/public">
+      Options Indexes FollowSymLinks
+      AllowOverride All
+      Require all granted
+    </Directory>
+</VirtualHost>

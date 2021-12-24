@@ -11,10 +11,19 @@
 
         <div class="row">
             <div class="col">
+                @if(session('message'))
+              
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <span>{{ session('message') }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif 
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> {{ trans('admin.categoria-indicadore.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/categoria-indicadores/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.categoria-indicadore.actions.create') }}</a>
+                        <i class="fa fa-align-justify"></i> {{ 'Categorias' }}
+                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/categoria-indicadores/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ 'Crear Categoria' }}</a>
                     </div>
                     <div class="card-body" v-cloak>
                         <form @submit.prevent="">
@@ -48,11 +57,10 @@
                                         </label>
                                     </th>
 
-                                    <th is='sortable' :column="'id'">{{ trans('admin.categoria-indicadore.columns.id') }}</th>
-                                    <th is='sortable' :column="'nombre'">{{ trans('admin.categoria-indicadore.columns.nombre') }}</th>
-                                    <th is='sortable' :column="'codigo'">{{ trans('admin.categoria-indicadore.columns.codigo') }}</th>
-                                    <th is='sortable' :column="'archivo_muestra'">{{ trans('admin.categoria-indicadore.columns.archivo_muestra') }}</th>
-
+                                    <th is='sortable' :column="'id'">{{ 'ID'}}</th>
+                                    <th is='sortable' :column="'nombre'">{{ 'Nombre' }}</th>
+                                    <th is='sortable' :column="'codigo'">{{ 'Codigo' }}</th>
+                                    <th is='sortable' :column="'archivo_muestra'">{{ 'Nombre archivo' }}</th>
                                     <th></th>
                                 </tr>
                                 <tr v-show="(clickedBulkItemsCount > 0) || isClickedAll">
@@ -107,7 +115,7 @@
 		                    <i class="icon-magnifier"></i>
 		                    <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
 		                    <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                            <a class="btn btn-primary btn-spinner" href="{{ url('admin/categoria-indicadores/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.categoria-indicadore.actions.create') }}</a>
+                            <a class="btn btn-primary btn-spinner" href="{{ url('admin/categoria-indicadores/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ 'Crear Categoria' }}</a>
 	                    </div>
                     </div>
                 </div>

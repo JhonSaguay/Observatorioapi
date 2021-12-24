@@ -9,8 +9,10 @@ use App\Http\Requests\Admin\Indicadore\UpdateIndicadore;
 use App\Http\Requests\Admin\Indicadore\DestroyIndicadore;
 use Brackets\AdminListing\Facades\AdminListing;
 use App\Models\Indicadore;
+use App\Models\FollowIndicador;
 use App\Models\CategoriaIndicadore;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class IndicadoresController extends Controller
 {
@@ -24,6 +26,8 @@ class IndicadoresController extends Controller
     public function index(IndexIndicadore $request)
     {
         // create and AdminListing instance for a specific model and
+
+        // $data = Indicadore::where('active','=',1)->get();
         $data = AdminListing::create(Indicadore::class)->processRequestAndGet(
             // pass the request with params
             $request,
@@ -32,7 +36,12 @@ class IndicadoresController extends Controller
             ['id', 'nombre', 'categoria', 'tipo', 'direccion_api', 'nombre_archivo', 'datos_indicador'],
 
             // set columns to searchIn
-            ['id', 'nombre', 'categoria', 'direccion_api', 'nombre_archivo', 'datos_indicador']
+            ['id', 'nombre', 'categoria', 'direccion_api', 'nombre_archivo', 'datos_indicador'],
+
+            function($query){
+                $query->where('active','=',1);
+
+            }
         );
 
         if ($request->ajax()) {
@@ -70,6 +79,27 @@ class IndicadoresController extends Controller
     public function store(Request $request)
     {
         // Sanitize input
+        $input=$request->all();
+        $rules=[
+            'file_csv' => 'mimes:csv,txt',
+            'nombre'=> 'required|unique:indicadores,nombre',  
+            'categoria' => 'required'
+
+        ];
+        $validator = Validator::make($input,$rules,$messages = [
+            'file_csv.mimes' => 'Solo se aceptan archivos con formato csv.',
+            'nombre.required' => 'No ha ingresado un nombre.',
+            'nombre.unique' => 'El nombre debe ser unico.',
+            'categoria.required' => 'No ha ingresado una categoria.'
+        ]
+        );
+        if($validator->fails())
+        {
+            return redirect()->back()->withInput()
+                ->withErrors($validator->errors());
+        }
+
+
         $categoria=CategoriaIndicadore::where('codigo','=',$request->categoria)->first();
         $list_headers=array();
         $data = json_decode($categoria->archivo_json, true);
@@ -102,30 +132,54 @@ class IndicadoresController extends Controller
                 $request->datos_indicador=$json_output;
             }
         }
+        // api
+        else{
+            $list_header_api=array();
+            $data_api = json_decode(file_get_contents($request->api_direction),true);
+            $json_output = json_encode($data_api);
+            $data_original=reset($data_api);
+            
+            if (is_array($data_original)){
+                foreach ($data_api[0] as $key=> $data) {
+                    $list_header_api[]=$key;
+                }
+            }
+            else{
+                foreach ($data_api as $key=> $data) {
+                    $list_header_api[]=$key;
+                }
+            }
+            $comparision=array_intersect($list_headers,$list_header_api);
+            if (count($comparision)==count($list_headers)){
+                $flag_enter=True;
+                $request->datos_indicador=$json_output;
+            }
+        }
         if ($flag_enter){
+            $indicador=Indicadore::where('active','=',1)->where('categoria','=',$request->categoria)->first();
+            if ($indicador){
+                $indicador->update(['active'=>0]);
+            }
+            
             $indicadores=Indicadore::create([
                 'nombre'=>$request->nombre,
                 'categoria' =>$request->categoria,
                 'tipo' =>$request->tipo,
-                'datos_indicador'=>$request->datos_indicador
-            ]
-            );
-            dd('Guardado con exito');
+                'datos_indicador'=>$request->datos_indicador,
+                'active'=>1
+            ]);
+            $followindicador=FollowIndicador::create([
+                'categoria_id'=>$indicadores->categoria,
+                'indicador_id' =>$indicadores->id,
+                'action' =>"Este Indicador ha sido actualizado"
+            ]);
+            return redirect('admin/indicadores')->with('message','Indicador creado con exito');
         }
         else{
-            dd('JSON incompatible con la muestra');
+            return redirect()->back()->withInput()
+                ->withErrors(['JSON incompatible con la muestra']);
         }
         
-        $sanitized = $request->validated();
-
-        // Store the Indicadore
-        $indicadore = Indicadore::create($sanitized);
-
-        if ($request->ajax()) {
-            return ['redirect' => url('admin/indicadores'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
-        }
-
-        return redirect('admin/indicadores');
     }
 
     /**
@@ -154,7 +208,7 @@ class IndicadoresController extends Controller
         $this->authorize('admin.indicadore.edit', $indicadore);
 
 
-        return view('admin.indicadore.edit', [
+        return view('admin.indicadores.edit', [
             'indicadore' => $indicadore,
         ]);
     }

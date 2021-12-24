@@ -9,9 +9,9 @@ use App\Models\Indicadore;
 class IndicadorApi extends Controller
 {
     //
-    public function getDataIndicador()
+    public function getDataIndicador($categoria)
     {
-        $indicadordata=Indicadore::find('1');
+        $indicadordata=Indicadore::where('categoria','=',$categoria)->where('active','=',1)->first();
         return ($result = $indicadordata->datos_indicador ) ? $result : [];
     }
 }

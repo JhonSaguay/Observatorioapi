@@ -15,8 +15,12 @@ class Indicadore extends Model
         "direccion_api",
         "nombre_archivo",
         "datos_indicador",
-    
+        "active",
     ];
+    public function categorias()
+    {
+        return $this->belongsTo(CategoriaIndicadore::class, 'categoria', 'codigo');
+    }
     
     protected $hidden = [
     

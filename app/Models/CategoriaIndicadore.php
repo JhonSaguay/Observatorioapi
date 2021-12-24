@@ -23,6 +23,12 @@ class CategoriaIndicadore extends Model
         "updated_at",
     
     ];
+
+    public function follows()
+    {
+        return $this->hasMany('App\Models\FollowIndicador', 'categoria_id', 'codigo');
+
+    }
     
     
     

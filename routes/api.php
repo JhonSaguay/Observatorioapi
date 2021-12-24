@@ -16,4 +16,4 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('indicador/data-list', 'Api\IndicadorApi@getDataIndicador')->name('api.avaluo.data-list');
+Route::get('indicador/data-list/{categoria}', 'Api\IndicadorApi@getDataIndicador')->name('api.avaluo.data-list');
