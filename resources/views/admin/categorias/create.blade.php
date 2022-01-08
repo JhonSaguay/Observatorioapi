@@ -39,3 +39,28 @@
     </div>
 
 @endsection
+@section('bottom-scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-growl/1.0.0/jquery.bootstrap-growl.min.js"></script>
+<script>
+    $(document).ready(function(){
+        getcategoria();
+    });
+</script>
+<script>
+    function getcategoria(){
+        let valor = document.getElementById("eje").value;
+        $("#categoria").empty();
+        $("#categoria").append("<option value=''>Elija una opcion</option>");
+        if (valor){
+            
+            $.post('{{route('api.categoria')}}', { id: valor}, 
+                function(returnedData){
+                    $.each(returnedData,function(key, registro) {
+                        $("#categoria").append('<option value='+registro.id+'>'+registro.nombre+'</option>');
+                    });  
+            });
+        }
+        
+    }
+</script>
+@endsection

@@ -17,6 +17,10 @@ class CreateIndicadoresTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('categoria');
+            $table->text('descripcion')->nullable();
+            $table->string('temporalidad')->nullable();
+            $table->string('proveedor_dato')->nullable();
+            $table->string('fuente')->nullable();
             $table->boolean('tipo')->comment('0/api-1/csv');
             $table->string('direccion_api')->nullable();
             $table->string('nombre_archivo')->nullable();

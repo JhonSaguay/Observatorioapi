@@ -166,11 +166,16 @@ class IndicadoresController extends Controller
                 'categoria' =>$request->categoria,
                 'tipo' =>$request->tipo,
                 'datos_indicador'=>$request->datos_indicador,
+                'descripcion'=>$request->descripcion,
+                'temporalidad'=>$request->temporalidad,
+                'proveedor_dato'=>$request->proveedor_dato,
+                'fuente'=>$request->fuente,
                 'active'=>1
             ]);
             $followindicador=FollowIndicador::create([
                 'categoria_id'=>$indicadores->categoria,
                 'indicador_id' =>$indicadores->id,
+                'indicador_nombre' =>$indicadores->nombre,
                 'action' =>"Este Indicador ha sido actualizado"
             ]);
             return redirect('admin/indicadores')->with('message','Indicador creado con exito');
@@ -248,7 +253,22 @@ class IndicadoresController extends Controller
      */
     public function destroy(DestroyIndicadore $request, Indicadore $indicadore)
     {
+        $categoria_code=$indicadore->categoria;
         $indicadore->delete();
+        $ultimo_indicador=Indicadore::where('categoria', $categoria_code)->orderBy('created_at', 'desc')->first();
+        if ($ultimo_indicador){
+            $ultimo_indicador->update([
+                'active'=>'1'
+            ]);
+            $followindicador=FollowIndicador::create([
+                'categoria_id'=>$categoria_code,
+                'indicador_id' =>$ultimo_indicador->id,
+                'indicador_nombre' =>$ultimo_indicador->nombre,
+                'action' =>"Este Indicador regreso ha su versión anterior"
+            ]);
+        }
+
+        
 
         if ($request->ajax()) {
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);

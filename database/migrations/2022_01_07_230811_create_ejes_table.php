@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriaIndicadoresTable extends Migration
+class CreateEjesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateCategoriaIndicadoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('categoria_indicadores', function (Blueprint $table) {
+        Schema::create('ejes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('code')->unique();
             $table->string('nombre');
-            $table->string('codigo');
-            $table->string('archivo_muestra')->nullable();
-            $table->json('archivo_json')->nullable();
-            $table->unsignedInteger('categoria_id');
-            $table->unsignedInteger('eje_id');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateCategoriaIndicadoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categoria_indicadors');
+        Schema::dropIfExists('ejes');
     }
 }

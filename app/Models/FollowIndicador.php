@@ -11,6 +11,7 @@ class FollowIndicador extends Model
     protected $fillable = [
         "categoria_id",
         "indicador_id",
+        "indicador_nombre",
         "action"
     
     ];

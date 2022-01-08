@@ -12,6 +12,9 @@ use Brackets\AdminListing\Facades\AdminListing;
 use App\Models\CategoriaIndicadore;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Eje;
+use App\Models\Categoria;
+use App\Models\Secuencia;
 // Helpers
 use App\Helpers\CustomUrl; // $string
 use App\Helpers\Archivos; // $nombre, $archivo, $disk
@@ -60,8 +63,9 @@ class CategoriaIndicadoresController extends Controller
     public function create()
     {
         $this->authorize('admin.categoria-indicadore.create');
+        $ejes=Eje::all();
 
-        return view('admin.categorias.create');
+        return view('admin.categorias.create', ['ejes'=>$ejes]);
     }
 
     /**
@@ -75,17 +79,16 @@ class CategoriaIndicadoresController extends Controller
         $input=$request->all();
         $rules=[
             'file_csv' => 'required|mimes:csv,txt',
-            'nombre'=> 'required|unique:categoria_indicadores,nombre',  
-            'codigo' => 'required|unique:categoria_indicadores,codigo'
+            'nombre'=> 'required|unique:categoria_indicadores,nombre',
+            'eje_id' => 'required',
+            'categoria_id' => 'required'
 
         ];
         $validator = Validator::make($input,$rules,$messages = [
             'file_csv.required' => 'No ha seleccionado ningún archivo.',
             'file_csv.mimes' => 'Solo se aceptan archivos con formato csv.',
             'nombre.required' => 'No ha ingresado un nombre.',
-            'nombre.unique' => 'El nombre debe ser unico.',
-            'codigo.required' => 'No ha ingresado un codigo.',
-            'codigo.unique' => 'El codigo debe ser unico.',
+            'nombre.unique' => 'El nombre debe ser unico.'
         ]
         );
         if($validator->fails())
@@ -111,13 +114,27 @@ class CategoriaIndicadoresController extends Controller
             $request->archivo_json=$json_output;
             $name = CustomUrl::urlTitle($request->codigo);
             $fileName=Archivos::storeImagen($name,$file, 'categorias');
+            // crear codigo y nombre
+            $eje=Eje::find($request->eje_id);
+            $categoria=Categoria::find($request->categoria_id);
+            $codigo_secuencia=$eje->code.'_'.$categoria->code;
+
+            $sequence_number=Secuencia::getCodigoSequence($codigo_secuencia)+1;
+
             $categoria=CategoriaIndicadore::create([
                 'nombre'=>$request->nombre,
-                'codigo' =>$request->codigo,
+                'codigo' =>$codigo_secuencia.'_'.$sequence_number,
                 'archivo_muestra'=>$fileName,
                 'archivo_json'=>$request->archivo_json,
+                'eje_id'=>$request->eje_id,
+                'categoria_id'=>$request->categoria_id
             ]);
             $categoria->save();
+            $secuencia= Secuencia::create([
+                'codigo_secuencia'=>$codigo_secuencia,
+                'secuencia'=>$sequence_number
+            ]);
+            $secuencia->save();
         }
         return redirect('admin/categoria-indicadores')->with('message','Categoria creada con exito');
     }

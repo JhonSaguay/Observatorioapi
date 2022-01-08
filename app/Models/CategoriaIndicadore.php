@@ -11,6 +11,8 @@ class CategoriaIndicadore extends Model
         "codigo",
         "archivo_muestra",
         "archivo_json",
+        "eje_id",
+        "categoria_id"
     
     ];
     
@@ -28,6 +30,14 @@ class CategoriaIndicadore extends Model
     {
         return $this->hasMany('App\Models\FollowIndicador', 'categoria_id', 'codigo');
 
+    }
+    public function categorias()
+    {
+        return $this->belongsTo(Categoria::class, 'categoria_id', 'id');
+    }
+    public function ejes()
+    {
+        return $this->belongsTo(Eje::class, 'eje_id', 'id');
     }
     
     

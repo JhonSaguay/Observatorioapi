@@ -15,6 +15,10 @@ class Indicadore extends Model
         "direccion_api",
         "nombre_archivo",
         "datos_indicador",
+        "descripcion",
+        "fuente",
+        "proveedor_dato",
+        "temporalidad",
         "active",
     ];
     public function categorias()

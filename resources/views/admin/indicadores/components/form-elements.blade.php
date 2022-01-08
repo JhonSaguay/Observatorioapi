@@ -2,13 +2,37 @@
 
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">Nombre</span>
+          <span class="input-group-text">Nombre *</span>
         </div>
         <input type="text" class="form-control" name="nombre" placeholder="Nombre"  required>
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">Tipo Indicador</span>
+          <span class="input-group-text">Descripción</span>
+        </div>
+        <input type="text" class="form-control" name="descripcion" placeholder="Descripción" >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Temporalidad</span>
+        </div>
+        <input type="text" class="form-control" name="temporalidad" placeholder="Temporalidad" >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Proveedor del Dato</span>
+        </div>
+        <input type="text" class="form-control" name="proveedor_dato" placeholder="Proveedor del Dato" >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Fuente</span>
+        </div>
+        <input type="text" class="form-control" name="fuente" placeholder="Fuente" >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Tipo Indicador *</span>
         </div>
         <select class="custom-select" id=categoria name="categoria" onchange="changecategoria()" required>
             <option disabled value="">Elija una opcion</option>

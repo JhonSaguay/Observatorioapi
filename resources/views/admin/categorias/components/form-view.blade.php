@@ -15,6 +15,20 @@
         <span class="form-control">{{$categoriaIndicadore->codigo}}</span>
     </div>
     <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Eje</span>
+        </div>
+        <input type="hidden" class="form-control" name="eje_id" value="{{$categoriaIndicadore->eje_id}}">
+        <span class="form-control">{{$categoriaIndicadore->ejes->nombre}}</span>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Categoría</span>
+        </div>
+        <input type="hidden" class="form-control" name="categoria_id" value="{{$categoriaIndicadore->categoria_id}}">
+        <span class="form-control">{{$categoriaIndicadore->categorias->nombre}}</span>
+    </div>
+    <div class="input-group mb-3">
         <span class="input-group-text">Archivo</span>
         
         <input accept="csv" type="file" class="form-control" name='file_csv'>
@@ -41,7 +55,7 @@
                     </div>
                 
                     <div class="card-body">
-                        <p class="card-text">Nombre: {{$item->indicador->nombre}}
+                        <p class="card-text">Nombre: {{$item->indicador_nombre}}
                         </p>
                         <p class="card-text">
                             Fecha de actualizacion: {{$item->created_at}}
