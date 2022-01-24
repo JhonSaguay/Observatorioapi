@@ -1,0 +1,62 @@
+{
+	"informacion": [{
+		"nombre": "Porcentaje de contratos publicados por procedimiento",
+		"eje": "PrevenciÃ³n de la CorrupciÃ³n",
+		"categoria": "Integridad PÃºblica",
+		"descripcion": "Cambio en el porcentaje de contratos publicados por procedimiento.",
+		"formula": "Sumatoria del nÃºmero anual de contratos publicados sobre la sumatoria del total anual de procedimientos adjudicados por parte de la institucion contratante.",
+		"funcionestado": "AdministraciÃ³n Central",
+		"proveedor": "SERCOP",
+		"temporalidad": "mensual",
+		"linkfuentedatosoriginal": "https://datosabiertos.compraspublicas.gob.ec/PLATAFORMA/api/search_ocds?year=2021&search=",
+		"formatofuenteoriginal": "api_json",
+		"nivelapertura": "tres",
+		"tipograficadefecto": "pastel"
+	}],
+	"descargas_datos_originales": [
+		{
+			"nombre": "Carga Enero 2022",
+			"fechacarga": "2022-03-01",
+			"formato": "csv",
+			"ultimacarga": "si",
+			"linkapi": "https://observatoriofuncionpublica.iaen.gob.ec/api1231231234"
+		},
+		{
+			"nombre": "Carga Febrero 2022",
+			"fechacarga": "2022-02-01",
+			"formato": "csv",
+			"ultimacarga": "si",
+			"linkapi": "https://observatoriofuncionpublica.iaen.gob.ec/api123634534534"
+		},
+		{
+			"nombre": "Carga Marzo 2022",
+			"fechacarga": "2022-01-01",
+			"formato": "csv",
+			"ultimacarga": "si",
+			"linkapi": "https://observatoriofuncionpublica.iaen.gob.ec/api12368676761234"
+		}
+	],
+	"datos": [
+		{
+			"EJERCICIO_FISCAL": 2021,
+		    "MES": "ABRIL",
+		    "NOMBRE_ENTIDAD": "ASAMBLEA NACIONAL",
+		    "TIPO_PRESUPUESTO": "GASTOS CORRIENTES",
+		    "PAGADO": 46774.69
+		},
+		{
+			"EJERCICIO_FISCAL": 2021,
+		    "MES": "ABRIL",
+		    "NOMBRE_ENTIDAD": "ASAMBLEA NACIONAL",
+		    "TIPO_PRESUPUESTO": "GASTOS CORRIENTES",
+		    "PAGADO": 46774.69
+		},
+		{
+			"EJERCICIO_FISCAL": 2021,
+		    "MES": "ABRIL",
+		    "NOMBRE_ENTIDAD": "ASAMBLEA NACIONAL",
+		    "TIPO_PRESUPUESTO": "GASTOS CORRIENTES",
+		    "PAGADO": 46774.69
+		}
+	]
+}
