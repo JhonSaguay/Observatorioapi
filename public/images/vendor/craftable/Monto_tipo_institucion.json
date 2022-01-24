@@ -14,8 +14,8 @@
     "tipograficadefecto": "columna",
     "variable_1":"TIPO_PRESUPUESTO",
     "variable_2":"NOMBRE_ENTIDAD",
-    "variable_calculo":"PAGADO",
-    "medida":"sumatoria"
+    "variable_3":"PAGADO",
+    "variable_medida":"sumatoria"
   }],
   "descargas_datos_originales": [
     {
