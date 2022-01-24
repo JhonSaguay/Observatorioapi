@@ -11,28 +11,29 @@
     "linkfuentedatosoriginal": "https://datosabiertos.gob.ec/dataset/ejecucion-del-presupuesto-general-del-estado-pge-gastos-consolidados-2021-octubre/resource/1246aaa9-69f2-47f5-bc71-da4cba257e90",
     "formatofuenteoriginal": "csv",
     "nivelapertura": "tres",
-    "tipograficadefecto": "columna"
+    "tipograficadefecto": "columna",
+    "variable_1":"TIPO_PRESUPUESTO",
+    "variable_2":"NOMBRE_ENTIDAD",
+    "variable_calculo":"PAGADO",
+    "medida":"sumatoria"
   }],
   "descargas_datos_originales": [
     {
       "nombre": "Carga Enero 2022",
       "fechacarga": "2022-03-01",
       "formato": "csv",
-      "ultimacarga": "si",
       "linkapi": "https://observatoriofuncionpublica.iaen.gob.ec/api1231231234"
     },
     {
       "nombre": "Carga Febrero 2022",
       "fechacarga": "2022-02-01",
       "formato": "csv",
-      "ultimacarga": "si",
       "linkapi": "https://observatoriofuncionpublica.iaen.gob.ec/api123634534534"
     },
     {
       "nombre": "Carga Marzo 2022",
       "fechacarga": "2022-01-01",
       "formato": "csv",
-      "ultimacarga": "si",
       "linkapi": "https://observatoriofuncionpublica.iaen.gob.ec/api12368676761234"
     }
   ],
