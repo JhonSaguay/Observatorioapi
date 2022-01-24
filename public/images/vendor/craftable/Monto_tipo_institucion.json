@@ -11,7 +11,7 @@
     "linkfuentedatosoriginal": "https://datosabiertos.gob.ec/dataset/ejecucion-del-presupuesto-general-del-estado-pge-gastos-consolidados-2021-octubre/resource/1246aaa9-69f2-47f5-bc71-da4cba257e90",
     "formatofuenteoriginal": "csv",
     "nivelapertura": "tres",
-    "tipograficadefecto": "columna",
+    "tipograficadefecto": "apilada",
     "variable_1":"TIPO_PRESUPUESTO",
     "variable_2":"NOMBRE_ENTIDAD",
     "variable_3":"PAGADO",
