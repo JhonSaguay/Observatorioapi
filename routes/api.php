@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('categoria-select2', 'Api\CategoriaApiController@returnDataCategoriaSelect2')->name('api.categoria');
 Route::get('categoria', 'Api\CategoriaApiController@returnDataCategoriaAll')->name('api.categoriaall');
 Route::get('indicador/data-list/{categoria}', 'Api\IndicadorApi@getDataIndicador')->name('api.avaluo.data-list');
+Route::get('indicadorestructura/data-list/{categoria}', 'Api\IndicadorApi@getDataIndicadorEstructura')->name('api.avaluo.data-list.estructura');

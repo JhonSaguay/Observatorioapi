@@ -26,6 +26,7 @@ class CreateIndicadoresTable extends Migration
             $table->string('nombre_archivo')->nullable();
             $table->boolean('active')->nullable();
             $table->json('datos_indicador');
+            $table->text('linkfuentedatosoriginal')->nullable();
             $table->timestamps();
         });
     }

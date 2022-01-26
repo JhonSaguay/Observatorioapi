@@ -9,13 +9,13 @@
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/articles-with-relationships') }}"><i class="nav-icon icon-graduation"></i> #5: With relationship</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/bulk-actions') }}"><i class="nav-icon icon-book-open"></i> #6: {{ trans('admin.bulk-action.title') }}</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/tags') }}"><i class="nav-icon icon-tag"></i> #7: {{ trans('admin.tag.title') }}</a></li> --}}
-           <li class="nav-item"><a class="nav-link" href="{{ url('admin/indicadores') }}"><i class="nav-icon icon-flag"></i> {{ trans('admin.indicadore.title') }}</a></li>
-           <li class="nav-item"><a class="nav-link" href="{{ url('admin/categoria-indicadores') }}"><i class="nav-icon icon-puzzle"></i> {{ trans('admin.categoria-indicadore.title') }}</a></li>
+           <li class="nav-item"><a class="nav-link" href="{{ url('admin/indicadores') }}"><i class="nav-icon icon-flag"></i> Indicadores</a></li>
+           <li class="nav-item"><a class="nav-link" href="{{ url('admin/categoria-indicadores') }}"><i class="nav-icon icon-puzzle"></i> Categoría Indicadores</a></li>
            {{-- Do not delete me :) I'm used for auto-generation menu items --}}
 
-            <li class="nav-title">{{ trans('brackets/admin-ui::admin.sidebar.settings') }}</li>
+            {{-- <li class="nav-title">{{ trans('brackets/admin-ui::admin.sidebar.settings') }}</li>
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/admin-users') }}"><i class="nav-icon icon-user"></i> {{ __('Manage access') }}</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ url('admin/translations') }}"><i class="nav-icon icon-location-pin"></i> {{ __('Translations') }}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('admin/translations') }}"><i class="nav-icon icon-location-pin"></i> {{ __('Translations') }}</a></li> --}}
             {{-- Do not delete me :) I'm also used for auto-generation menu items --}}
             {{--<li class="nav-item"><a class="nav-link" href="{{ url('admin/configuration') }}"><i class="nav-icon icon-settings"></i> {{ __('Configuration') }}</a></li>--}}
         </ul>

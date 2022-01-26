@@ -21,6 +21,7 @@ class CreateCategoriaIndicadoresTable extends Migration
             $table->json('archivo_json')->nullable();
             $table->unsignedInteger('categoria_id');
             $table->unsignedInteger('eje_id');
+            $table->string('tipograficadefecto')->nullable();
             $table->timestamps();
         });
     }

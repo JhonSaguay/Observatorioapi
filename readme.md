@@ -21,6 +21,17 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
 
+## Sobre Observatorio
+Este sistema se ha construido con laravel, ayudados de Craftable. Para poder correr este proyecto, debemos instalar npm, composer y mysql.
+
+Una vez instalado todos los requerimientos, haremos un
+
+- composer dump-autoload
+- php artisan migrate:fresh --seed
+- npm run dev
+
+La carpeta brackets_change, debe ser reemplazada en la carpeta vendor.
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
