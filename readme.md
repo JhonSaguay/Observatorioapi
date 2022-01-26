@@ -30,7 +30,15 @@ Una vez instalado todos los requerimientos, haremos un
 - php artisan migrate:fresh --seed
 - npm run dev
 
-La carpeta brackets_change, debe ser reemplazada en la carpeta vendor.
+La carpeta brackets_change, debe ser reemplazada en la carpeta vendor por la carpeta brackets.
+
+Dentro de la carpeta database/apis, encontraremos dos archivos python aqui deberemos cambiar el nombre de la base de datos, usuario y contraseña segun corresponda, en donde deseamos guardar la información que será reflejada en el sistema.
+
+Es importante trabajar con msql version 8.0.23
+
+- Primero deberemos instalar python version 3.6 y pip3
+- pip3 install mysql-connector-python
+- pip3 install requests
 
 ## Learning Laravel
 
