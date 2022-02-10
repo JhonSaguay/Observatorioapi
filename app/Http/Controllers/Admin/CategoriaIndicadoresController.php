@@ -64,8 +64,9 @@ class CategoriaIndicadoresController extends Controller
     {
         $this->authorize('admin.categoria-indicadore.create');
         $ejes=Eje::all();
+        $categorias=Categoria::all();
 
-        return view('admin.categorias.create', ['ejes'=>$ejes]);
+        return view('admin.categorias.create', ['ejes'=>$ejes,'categorias'=>$categorias]);
     }
 
     /**

@@ -16,8 +16,9 @@
       <div class="input-group-prepend">
         <span class="input-group-text">Eje *</span>
       </div>
-      <select class="custom-select" id=eje name="eje_id" onchange="getcategoria()" required>
-          <option disabled value="">Elija una opcion</option>
+      {{-- <select class="custom-select" id=eje name="eje_id" onchange="getcategoria()" required> --}}
+      <select class="custom-select" id=eje name="eje_id" required>    
+        <option disabled value="">Elija una opcion</option>
           @foreach ($ejes as $item)
               <option value="{{$item->id}}">{{$item->nombre}}</option>
           @endforeach
@@ -27,8 +28,11 @@
       <div class="input-group-prepend">
         <span class="input-group-text">Categoría *</span>
       </div>
-      <select class="custom-select" id=categoria name="categoria_id" required>
+      <select class="custom-select" id=categoria name="categoria_id"  required>
           <option value="">Elija una opcion</option>
+          @foreach ($categorias as $item)
+              <option value="{{$item->id}}">{{$item->nombre}}</option>
+          @endforeach
       </select>
     </div>
     <div class="input-group mb-3">
