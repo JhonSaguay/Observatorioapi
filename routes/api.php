@@ -17,7 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('variable-select2', 'Api\CategoriaIndicadorApiController@returnVariablesSelect2')->name('api.variables');
-Route::post('categoria-select2', 'Api\CategoriaApiController@returnDataCategoriaSelect2')->name('api.categoria');
+// Route::post('categoria-select2', 'Api\CategoriaApiController@returnDataCategoriaSelect2')->name('api.categoria');
+Route::get('categoria-select2', 'Api\CategoriaApiController@returnDataCategoriaSelect2')->name('api.categoria');
 Route::get('categoria', 'Api\CategoriaApiController@returnDataCategoriaAll')->name('api.categoriaall');
 Route::get('indicador/data-list/{categoria}', 'Api\IndicadorApi@getDataIndicador')->name('api.indicador.data-list');
 Route::get('indicadorestructura/data-list/{categoria}', 'Api\IndicadorApi@getDataIndicadorEstructura')->name('api.indicador.data-list.estructura');

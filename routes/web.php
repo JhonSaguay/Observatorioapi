@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 
+
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(function () {
     Route::get('/admin/admin-users',                            'Admin\AdminUsersController@index');
@@ -69,15 +70,15 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 });
 
 /* Auto-generated admin routes */
-Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(function () {
-    Route::get('/admin/exports',                                'Admin\ExportsController@index');
-    Route::get('/admin/exports/create',                         'Admin\ExportsController@create');
-    Route::post('/admin/exports',                               'Admin\ExportsController@store');
-    Route::get('/admin/exports/{export}/edit',                  'Admin\ExportsController@edit')->name('admin/exports/edit');
-    Route::post('/admin/exports/{export}',                      'Admin\ExportsController@update')->name('admin/exports/update');
-    Route::delete('/admin/exports/{export}',                    'Admin\ExportsController@destroy')->name('admin/exports/destroy');
-    Route::get('/admin/exports/export',                         'Admin\ExportsController@export')->name('admin/exports/export');
-});
+// Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(function () {
+//     Route::get('/admin/exports',                                'Admin\ExportsController@index');
+//     Route::get('/admin/exports/create',                         'Admin\ExportsController@create');
+//     Route::post('/admin/exports',                               'Admin\ExportsController@store');
+//     Route::get('/admin/exports/{export}/edit',                  'Admin\ExportsController@edit')->name('admin/exports/edit');
+//     Route::post('/admin/exports/{export}',                      'Admin\ExportsController@update')->name('admin/exports/update');
+//     Route::delete('/admin/exports/{export}',                    'Admin\ExportsController@destroy')->name('admin/exports/destroy');
+//     Route::get('/admin/exports/export',                         'Admin\ExportsController@export')->name('admin/exports/export');
+// });
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(function () {
@@ -123,6 +124,8 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 });
 
 /* Auto-generated admin routes */
+
+Route::get('/indicador/inspeccion/{categoria}','Admin\IndicadoresController@getDataIndicadorEstructura');
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(function () {
     Route::get('/admin/indicadores',                            'Admin\IndicadoresController@index');
     Route::get('/admin/indicadores/create',                     'Admin\IndicadoresController@create');
