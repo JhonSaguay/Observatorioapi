@@ -310,4 +310,34 @@ class IndicadoresController extends Controller
         return redirect()->back();
     }
     
+    public function getDataIndicadorEstructura($categoria)
+    {
+        // informacion indicador
+        $informacion=Indicadore::getIndicadorInfo($categoria);
+        // datos del indicador
+        $indicadordata=Indicadore::where('categoria','=',$categoria)->where('active','=',1)->first();
+        $datos_indicador_ultimacarga=$indicadordata->datos_indicador ? $indicadordata->datos_indicador  : [];
+        // todos los datos
+        $array_indicador_all=array();
+        $indicador_all=Indicadore::where('categoria','=',$categoria)->get();
+        foreach ($indicador_all as $data){
+            $array_data=array(
+                "nombre"=>"Carga ".$data->id,
+                "fechacarga"=>$data->created_at,
+                "ultimacarga"=>$data->active,
+                "formato"=>"csv",
+                "linkapi"=> route('api.indicador.download',[$categoria,$data->id])
+            );
+            $array_indicador_all[]=$array_data;
+        }
+        $estructura=array( 
+            "informacion" => $informacion, 
+            "descargas_datos_originales" =>  $array_indicador_all,
+            "datos" => $datos_indicador_ultimacarga
+        ); 
+        $estructuraJson=json_encode($estructura);
+        return($estructuraJson);
     }
+    
+}
+

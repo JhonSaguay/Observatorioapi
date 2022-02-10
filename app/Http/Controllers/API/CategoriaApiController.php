@@ -10,21 +10,21 @@ class CategoriaApiController extends Controller
 {
     //
 
-    public function returnDataCategoriaSelect2(Request $request)
+    public function returnDataCategoriaSelect2()
     {
-        $eje=$request->get('id');
+        // $eje=$request->get('id');
         $data = [];
-        $categorias= Categoria::where('eje_id','=',$eje)->get();
-       
-        // foreach ($categorias as $categoria) {
-        //     $data[] = [
-        //         'id' => $categoria->id,
-        //         'text' => $categoria->name
-        //     ];
-        // }
+        // $categorias= Categoria::where('eje_id','=',$eje)->get();
+        $categorias=Categoria::all();
+        foreach ($categorias as $categoria) {
+            $data[] = [
+                'id' => $categoria->id,
+                'text' => $categoria->nombre
+            ];
+        }
 
         // return ['results' => $data];
-        return ($categorias);
+        return ($data);
     }
     public function returnDataCategoriaAll()
     {
