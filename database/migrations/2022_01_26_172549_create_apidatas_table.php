@@ -16,6 +16,7 @@ class CreateApidatasTable extends Migration
         Schema::create('apidata', function (Blueprint $table) {
             $table->increments('id');
             $table->json('datosjson')->nullable();
+            $table->string('categoria')->nullable();
             $table->timestamps();
         });
     }

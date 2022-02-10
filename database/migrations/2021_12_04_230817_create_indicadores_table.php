@@ -24,9 +24,15 @@ class CreateIndicadoresTable extends Migration
             $table->boolean('tipo')->comment('0/api-1/csv');
             $table->string('direccion_api')->nullable();
             $table->string('nombre_archivo')->nullable();
+            $table->string('tipo_grafica')->nullable();
+            $table->string('nivel_apertura')->nullable();
+            $table->string('variable_1')->nullable();
+            $table->string('variable_2')->nullable();
+            $table->string('variable_3')->nullable();
+            $table->string('variable_medida')->nullable();
             $table->boolean('active')->nullable();
             $table->json('datos_indicador');
-            $table->text('linkfuentedatosoriginal')->nullable();
+            $table->boolean('is_original_data');
             $table->timestamps();
         });
     }

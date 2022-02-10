@@ -10,7 +10,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/bulk-actions') }}"><i class="nav-icon icon-book-open"></i> #6: {{ trans('admin.bulk-action.title') }}</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/tags') }}"><i class="nav-icon icon-tag"></i> #7: {{ trans('admin.tag.title') }}</a></li> --}}
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/indicadores') }}"><i class="nav-icon icon-flag"></i> Indicadores</a></li>
-           <li class="nav-item"><a class="nav-link" href="{{ url('admin/categoria-indicadores') }}"><i class="nav-icon icon-puzzle"></i> Categoría Indicadores</a></li>
+           <li class="nav-item"><a class="nav-link" href="{{ url('admin/categoria-indicadores') }}"><i class="nav-icon icon-puzzle"></i> Tipo Indicador</a></li>
            {{-- Do not delete me :) I'm used for auto-generation menu items --}}
 
             {{-- <li class="nav-title">{{ trans('brackets/admin-ui::admin.sidebar.settings') }}</li>

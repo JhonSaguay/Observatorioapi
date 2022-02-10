@@ -5,6 +5,7 @@ import time
 def savedatabase(conexion,my_dict):
     cur = conexion.cursor()
     for dato in my_dict:
+        # dato_json={"en":dato}
         json_string=(json.dumps(dato))
         sql1="insert into apidata(datosjson) values ('"+json_string+"')"
         cur.execute(sql1)

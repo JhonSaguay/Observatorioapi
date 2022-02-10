@@ -9,6 +9,7 @@ use App\Models\Categoria;
 class CategoriaApiController extends Controller
 {
     //
+
     public function returnDataCategoriaSelect2(Request $request)
     {
         $eje=$request->get('id');

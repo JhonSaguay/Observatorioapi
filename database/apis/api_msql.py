@@ -13,19 +13,21 @@ def saveindicador(conexion):
 
 def savedatabasemsql(conexion,my_dict):
     cur = conexion.cursor()
+    cont=0
     for dato in my_dict:
         json_string=(json.dumps(dato))
         json_string2=json.loads(json_string)
         json_final=json.dumps(json_string2,ensure_ascii=False)
-        # print(json_final)
-        sql1="insert into apidata(datosjson) values ('"+json_final+"')"
+        sql1="insert into apidata(datosjson,categoria) values ('"+json_final+"','funcion_publica_presupuesto_1')"
         try:
             cur.execute(sql1)
         except:
-            print('entro')
-            print(sql1)
-            print(dato['description'])
-        
+            cont+=1
+            # print('entro')
+            # print(sql1)
+            # print(dato['description'])
+    if cont>0:
+        print("Errores: ",cont)
 def consultarapicomprasmsql(apiurl,conexion):
     my_dict={'data':['prueba']}
     cont=1
@@ -49,9 +51,9 @@ def consultarapicomprasmsql(apiurl,conexion):
 apiurl = "https://datosabiertos.compraspublicas.gob.ec/PLATAFORMA/api/search_ocds?year=2021&search=&page="
 try:
     connection = mysql.connector.connect(host='localhost',
-                                         database='observatorio_f',
-                                         user='root',
-                                         password='1998414')
+                                         database='ofpindicadores',
+                                         user='ofpuser',
+                                         password='kwR2XEU9ZgkUvw4x@!')
     if connection.is_connected():
         consultarapicomprasmsql(apiurl,connection)
         db_Info = connection.get_server_info()

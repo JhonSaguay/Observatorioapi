@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ 'Categorias' }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/categoria-indicadores/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ 'Crear Categoria' }}</a>
+                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/categoria-indicadores/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ 'Crear Tipo Indicador' }}</a>
                     </div>
                     <div class="card-body" v-cloak>
                         <form @submit.prevent="">
@@ -106,7 +106,7 @@
 		                    <i class="icon-magnifier"></i>
 		                    <h3>{{ trans('brackets/admin-ui::admin.index.no_items') }}</h3>
 		                    <p>{{ trans('brackets/admin-ui::admin.index.try_changing_items') }}</p>
-                            <a class="btn btn-primary btn-spinner" href="{{ url('admin/categoria-indicadores/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ 'Crear Categoria' }}</a>
+                            <a class="btn btn-primary btn-spinner" href="{{ url('admin/categoria-indicadores/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ 'Crear Tipo Indicador' }}</a>
 	                    </div>
                     </div>
                 </div>

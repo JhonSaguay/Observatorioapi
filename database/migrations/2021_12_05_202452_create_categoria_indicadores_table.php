@@ -19,6 +19,7 @@ class CreateCategoriaIndicadoresTable extends Migration
             $table->string('codigo');
             $table->string('archivo_muestra')->nullable();
             $table->json('archivo_json')->nullable();
+            $table->json('variables')->nullable();
             $table->unsignedInteger('categoria_id');
             $table->unsignedInteger('eje_id');
             $table->string('tipograficadefecto')->nullable();

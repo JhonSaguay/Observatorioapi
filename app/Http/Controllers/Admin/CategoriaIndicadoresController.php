@@ -109,6 +109,9 @@ class CategoriaIndicadoresController extends Controller
                 $column_name[]=$label;
                 $column_data[]=$label;
             }
+            $column_variables=array();
+            $column_variables['variables']=$column_name;
+            $json_variable=json_encode($column_variables);
             $final_data=array_combine($column_name,$column_data);
             $json_output = json_encode($final_data);
             $request->archivo_json=$json_output;
@@ -127,7 +130,8 @@ class CategoriaIndicadoresController extends Controller
                 'archivo_muestra'=>$fileName,
                 'archivo_json'=>$request->archivo_json,
                 'eje_id'=>$request->eje_id,
-                'categoria_id'=>$request->categoria_id
+                'categoria_id'=>$request->categoria_id,
+                'variables'=>$json_variable
             ]);
             $categoria->save();
             $secuencia= Secuencia::create([

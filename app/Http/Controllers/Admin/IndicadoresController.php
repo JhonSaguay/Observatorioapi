@@ -169,8 +169,15 @@ class IndicadoresController extends Controller
                 'descripcion'=>$request->descripcion,
                 'temporalidad'=>$request->temporalidad,
                 'proveedor_dato'=>$request->proveedor_dato,
-                'fuente'=>$request->fuente,
-                'active'=>1
+                'direccion_api'=>$request->direccion_api,
+                'tipo_grafica'=>$request->tipo_grafica,
+                'nivel_apertura'=>$request->nivel_apertura,
+                'variable_1'=>$request->variable_1,
+                'variable_2'=>$request->variable_2,
+                'variable_3'=>$request->variable_3,
+                'variable_medida'=>$request->variable_medida,
+                'active'=>1,
+                'is_original_data'=>1,
             ]);
             $followindicador=FollowIndicador::create([
                 'categoria_id'=>$indicadores->categoria,

@@ -83,6 +83,7 @@
                 var newUrl = valuehtml1.replace("x-id", valor); // Create new url
                 $(this).attr("href", newUrl); // Set herf value
             });
+            getvariable(valor);
         }
         
     }
@@ -131,6 +132,28 @@
     }
 
   </script>
+  <script>
+    function getvariable(valor){
+        $("#variable_1").empty();
+        $("#variable_1").append("<option value=''>Elija una opcion</option>");
+        $("#variable_2").empty();
+        $("#variable_2").append("<option value=''>Elija una opcion</option>");
+        $("#variable_3").empty();
+        $("#variable_3").append("<option value=''>Elija una opcion</option>");
+        if (valor){
+            
+            $.post('{{route('api.variables')}}', { codigo: valor}, 
+                function(returnedData){
+                    $.each(returnedData,function(key, registro) {
+                        $("#variable_1").append('<option value='+registro.id+'>'+registro.text+'</option>');
+                        $("#variable_2").append('<option value='+registro.id+'>'+registro.text+'</option>');
+                        $("#variable_3").append('<option value='+registro.id+'>'+registro.text+'</option>');
+                    });  
+            });
+        }
+        
+    }
+</script>
 
     
 @endsection

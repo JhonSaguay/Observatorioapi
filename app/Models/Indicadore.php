@@ -22,6 +22,13 @@ class Indicadore extends Model
         "proveedor_dato",
         "temporalidad",
         "active",
+        "tipo_grafica",
+        "nivel_apertura",
+        "variable_1",
+        "variable_2",
+        "variable_3",
+        "variable_medida",
+        "is_original_data",
     ];
     public function categorias()
     {
@@ -55,7 +62,9 @@ class Indicadore extends Model
 
     public static function builder()
     {
-        $rs = Indicadore::select('indicadores.nombre','indicadores.descripcion','indicadores.proveedor_dato','indicadores.temporalidad');
+        $rs = Indicadore::select('indicadores.nombre','indicadores.descripcion',
+                        'indicadores.proveedor_dato','indicadores.temporalidad','indicadores.direccion_api as linkfuentedatosoriginal',
+                        'indicadores.tipo_grafica','indicadores.nivel_apertura','indicadores.variable_1','indicadores.variable_2','indicadores.variable_3','indicadores.variable_medida');
         return $rs;
     }
     public static function getIndicadorInfo($categoria)

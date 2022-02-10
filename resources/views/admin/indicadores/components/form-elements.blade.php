@@ -26,9 +26,9 @@
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">Fuente</span>
+          <span class="input-group-text">Link Fuente</span>
         </div>
-        <input type="text" class="form-control" name="fuente" placeholder="Fuente" >
+        <input type="url" class="form-control" name="direccion_api" placeholder="Fuente" >
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -39,6 +39,66 @@
             @foreach ($categorias as $item)
                 <option value="{{$item->codigo}}">{{$item->nombre}}</option>
             @endforeach
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Nivel Apertura *</span>
+        </div>
+        <select class="custom-select" id=nivel_apertura name="nivel_apertura" required>
+            <option disabled selected value="">Elija una opcion</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="3">4</option>
+            <option value="3">5</option>
+        </select>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Tipo Gráfica *</span>
+        </div>
+        <select class="custom-select" id=tipo_grafica name="tipo_grafica" required>
+            <option disabled selected value="">Elija una opcion</option>
+            <option value="apilada">Apilada</option>
+            <option value="columna">Columna</option>
+            <option value="pastel">Pastel</option>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Variable 1 *</span>
+        </div>
+        <select class="custom-select" id=variable_1 name="variable_1" required>
+            <option disabled selected value="">Elija una opcion</option>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Variable 2 *</span>
+        </div>
+        <select class="custom-select" id=variable_2 name="variable_2" required>
+            <option disabled selected value="">Elija una opcion</option>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Variable 3</span>
+        </div>
+        <select class="custom-select" id=variable_3 name="variable_3">
+            <option disabled selected value="">Elija una opcion</option>
+        </select>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Variable medida *</span>
+        </div>
+        <select class="custom-select" id=variable_medida name="variable_medida" required>
+            <option disabled selected value="">Elija una opcion</option>
+            <option value="suma">Sumatoria</option>
+            <option value="conteo">Conteo</option>
         </select>
     </div>
 

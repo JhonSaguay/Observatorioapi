@@ -34,7 +34,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Api Consulta</span>
         </div>
-        <span class="form-control">{{route('api.avaluo.data-list',$indicadore->categoria)}}</span>
+        <span class="form-control">{{route('api.indicador.data-list.estructura',$indicadore->categoria)}}</span>
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -56,15 +56,14 @@
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">Fuente</span>
+        <span class="input-group-text">Link Fuente</span>
       </div>
-      <span class="form-control">{{$indicadore->fuente}}</span>
+      <span class="form-control">{{$indicadore->direccion_api}}</span>
     </div>
 
     
     
     <div class="input-group mb-3 csv">
-        {{-- <a id="plantilla" href="#" class="d-none"></a>  --}}
         <a id="plantilla" href="{{route('categoria.download',$indicadore->categoria)}}" class="btn btn-info btn-rounded waves-effect text-white"><i class="fa fa-download"
             aria-hidden="true"></i>Descargar plantilla csv</a> 
     </div>

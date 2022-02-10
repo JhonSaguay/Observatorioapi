@@ -12,7 +12,8 @@ class CategoriaIndicadore extends Model
         "archivo_muestra",
         "archivo_json",
         "eje_id",
-        "categoria_id"
+        "categoria_id",
+        "variables"
     
     ];
     
